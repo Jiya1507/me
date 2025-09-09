@@ -2,22 +2,19 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Jiya Shah - Web Designer & Developer</title>
+        <title>Jiya Shah - Portfolio</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Portfolio HTML Template" name="keywords">
         <meta content="Portfolio HTML Template" name="description">
 
         <!-- Favicon -->
-        <link href="img/favicon.ico" rel="icon">
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👩‍💻</text></svg>">
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet"> 
 
         <!-- Font Awesome -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
-        <!-- AOS Library for Scroll Animations -->
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
         <style>
             :root {
@@ -43,6 +40,7 @@
                 line-height: 1.6;
                 overflow-x: hidden;
                 scroll-behavior: smooth;
+                padding-top: 70px; /* Account for fixed header */
             }
             
             h1, h2, h3, h4, h5, h6 {
@@ -152,6 +150,7 @@
                 padding: 120px 0 80px;
                 position: relative;
                 overflow: hidden;
+                margin-top: 70px;
             }
             
             .top-header::before {
@@ -219,21 +218,21 @@
                 top: 0;
                 left: 0;
                 width: 100%;
-                padding: 20px 0;
+                padding: 10px 0;
                 background: rgba(255, 255, 255, 0.95);
-                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
                 z-index: 1000;
                 transition: var(--transition);
             }
             
             .header.sticky {
-                padding: 15px 0;
+                padding: 8px 0;
                 background: white;
             }
             
             .logo h1 a {
                 color: var(--dark-color);
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
             
             .logo h1 a span {
@@ -248,7 +247,7 @@
             }
             
             .nav-menu li {
-                margin: 0 15px;
+                margin: 0 10px;
             }
             
             .nav-menu li a {
@@ -256,6 +255,7 @@
                 font-weight: 500;
                 position: relative;
                 padding: 5px 0;
+                font-size: 0.9rem;
             }
             
             .nav-menu li a::after {
@@ -276,21 +276,40 @@
             
             .social-nav a {
                 display: inline-block;
-                width: 40px;
-                height: 40px;
-                line-height: 40px;
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
                 text-align: center;
                 background: var(--light-color);
                 color: var(--dark-color);
                 border-radius: 50%;
-                margin-left: 10px;
+                margin-left: 8px;
                 transition: var(--transition);
+                font-size: 0.9rem;
             }
             
             .social-nav a:hover {
                 background: var(--primary-color);
                 color: white;
                 transform: translateY(-3px);
+            }
+            
+            /* Mobile Menu */
+            .menu-toggle {
+                display: none;
+                flex-direction: column;
+                justify-content: space-between;
+                width: 30px;
+                height: 21px;
+                cursor: pointer;
+            }
+            
+            .menu-toggle span {
+                height: 3px;
+                width: 100%;
+                background-color: var(--dark-color);
+                border-radius: 3px;
+                transition: var(--transition);
             }
             
             /* About Section */
@@ -303,6 +322,8 @@
                 border-radius: 10px;
                 box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
                 transition: var(--transition);
+                width: 100%;
+                height: auto;
             }
             
             .about img:hover {
@@ -340,7 +361,8 @@
                 background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
                 border-radius: 5px;
                 position: relative;
-                transition: width 1s ease;
+                transition: width 1.5s ease;
+                width: 0;
             }
             
             /* Experience Section */
@@ -357,6 +379,7 @@
                 margin-bottom: 30px;
                 transition: var(--transition);
                 border-left: 4px solid var(--primary-color);
+                height: 100%;
             }
             
             .exp-column:hover {
@@ -395,6 +418,7 @@
                 margin-bottom: 30px;
                 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
                 transition: var(--transition);
+                height: 100%;
             }
             
             .single-service:hover {
@@ -467,6 +491,7 @@
                 border-radius: 30px;
                 font-weight: 500;
                 transition: var(--transition);
+                background: var(--light-color);
             }
             
             #portfolio-flters li:hover, 
@@ -477,6 +502,11 @@
             
             .portfolio-item {
                 margin-bottom: 30px;
+                display: none;
+            }
+            
+            .portfolio-item.active {
+                display: block;
             }
             
             .portfolio-wrap {
@@ -489,6 +519,8 @@
             .portfolio-wrap img {
                 width: 100%;
                 transition: var(--transition);
+                height: 250px;
+                object-fit: cover;
             }
             
             .portfolio-wrap:hover img {
@@ -648,18 +680,23 @@
             
             /* Responsive Styles */
             @media (max-width: 991px) {
+                .menu-toggle {
+                    display: flex;
+                }
+                
                 .nav-menu {
                     position: fixed;
-                    top: 80px;
+                    top: 70px;
                     left: -100%;
                     flex-direction: column;
                     background: white;
                     width: 100%;
-                    height: calc(100vh - 80px);
+                    height: calc(100vh - 70px);
                     padding: 20px;
                     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
                     transition: 0.5s;
                     z-index: 999;
+                    overflow-y: auto;
                 }
                 
                 .nav-menu.active {
@@ -668,10 +705,11 @@
                 
                 .nav-menu li {
                     margin: 15px 0;
+                    text-align: center;
                 }
                 
-                .menu-toggle {
-                    display: block;
+                .social-nav {
+                    display: none;
                 }
                 
                 .top-header h1 {
@@ -691,37 +729,102 @@
                 .section-header h2 {
                     font-size: 1.8rem;
                 }
+                
+                .header .container {
+                    flex-direction: column;
+                    text-align: center;
+                }
+                
+                .logo {
+                    margin-bottom: 10px;
+                }
+            }
+            
+            /* Grid System */
+            .row {
+                display: flex;
+                flex-wrap: wrap;
+                margin-right: -15px;
+                margin-left: -15px;
+            }
+            
+            .col-md-6, .col-md-3, .col-md-4, .col-sm-6, .col-lg-4, .col-lg-12 {
+                position: relative;
+                width: 100%;
+                padding-right: 15px;
+                padding-left: 15px;
+            }
+            
+            @media (min-width: 768px) {
+                .col-md-6 {
+                    flex: 0 0 50%;
+                    max-width: 50%;
+                }
+                
+                .col-md-4 {
+                    flex: 0 0 33.333333%;
+                    max-width: 33.333333%;
+                }
+                
+                .col-md-3 {
+                    flex: 0 0 25%;
+                    max-width: 25%;
+                }
+            }
+            
+            @media (min-width: 576px) {
+                .col-sm-6 {
+                    flex: 0 0 50%;
+                    max-width: 50%;
+                }
+            }
+            
+            .align-items-center {
+                align-items: center;
+            }
+            
+            .d-none {
+                display: none;
+            }
+            
+            .d-lg-inline {
+                display: inline;
+            }
+            
+            .d-lg-block {
+                display: block;
+            }
+            
+            .d-flex {
+                display: flex;
+            }
+            
+            .justify-content-between {
+                justify-content: space-between;
+            }
+            
+            .pull-left {
+                float: left;
+            }
+            
+            .pull-right {
+                float: right;
+            }
+            
+            @media (max-width: 991px) {
+                .d-none.d-lg-inline {
+                    display: none;
+                }
             }
         </style>
     </head>
 
     <body>
-        <!-- Header Start -->
-        <div class="top-header" id="top-header">
-            <div class="container text-center">
-                <div class="row align-items-center">
-                    <div class="col-md-12">
-                        <img src="img/p5.jpg" alt="Jiya Shah" />
-                    </div>
-
-                    <div class="col-md-12">
-                        <h1>I'm JIYA SHAH</h1>
-                    </div>
-
-                    <div class="col-md-12">
-                        <p>Web Designer, Web Developer, Front End Developer, UI/UX Designer, Graphic Designer</p>
-                        <h2 id="typing-text"></h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Header End -->
-
         <!-- Nav Start -->
         <div class="header" id="header">
             <div class="container d-flex justify-content-between align-items-center">
                 <div class="logo">
-                    <h1><a href="index.html">My<span>Folio</span></a></h1>
+                    <h1><a href="index.html">Jiya<span>Shah</span></a></h1>
                 </div>
 
                 <div class="menu-toggle d-lg-none">
@@ -750,15 +853,36 @@
         </div>
         <!-- Nav End -->
 
+        <!-- Header Start -->
+        <div class="top-header" id="top-header">
+            <div class="container text-center">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <img src="https://img.freepik.com/premium-vector/creative-girl-working-laptop-illustration-flat-design-style_174564-29.jpg" alt="Jiya Shah" />
+                    </div>
+
+                    <div class="col-md-12">
+                        <h1>I'm JIYA SHAH</h1>
+                    </div>
+
+                    <div class="col-md-12">
+                        <p>Web Designer, Web Developer, Front End Developer, UI/UX Designer, Graphic Designer</p>
+                        <h2 id="typing-text"></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+
         <!-- About Me Start-->
         <div class="about" id="about">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-md-6 col-lg-4" data-aos="fade-right">
-                        <img class="img-fluid" src="img/p4.jpg" alt="Jiya Shah" />
+                    <div class="col-md-6 col-lg-4">
+                        <img class="img-fluid" src="https://i.pinimg.com/736x/c3/ac/91/c3ac91cdfb7e17dcdbd9741560cb1622.jpg" alt="Jiya Shah working on laptop" />
                     </div>
 
-                    <div class="col-md-6 col-lg-8" data-aos="fade-left">
+                    <div class="col-md-6 col-lg-8">
                         <header class="section-header">
                             <h2>About Me</h2>
                         </header>
@@ -772,53 +896,53 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6" data-aos="fade-up">
+                    <div class="col-md-6">
                         <div class="skills">
                             <h3>Front End Skills</h3>
                             <div class="skill-name">
                                 <p>HTML</p><p>85%</p>
                             </div>
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar" data-width="85"></div>
                             </div>
                             
                             <div class="skill-name">
                                 <p>CSS</p><p>95%</p>
                             </div>
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar" data-width="95"></div>
                             </div>
                             
                             <div class="skill-name">
                                 <p>JavaScript</p><p>65%</p>
                             </div>
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar" data-width="65"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-md-6">
                         <div class="skills">
                             <h3>UI/UX Designer</h3>
                             <div class="skill-name">
                                 <p>Wireframing</p><p>90%</p>
                             </div>
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar" data-width="90"></div>
                             </div>
                             
                             <div class="skill-name">
                                 <p>Figma</p><p>85%</p>
                             </div>
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar" data-width="85"></div>
                             </div>
                             
                             <div class="skill-name">
                                 <p>User Research</p><p>95%</p>
                             </div>
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar" data-width="95"></div>
                             </div>
                         </div>
                     </div>
@@ -830,14 +954,14 @@
         <!-- Job Experience Start -->
         <div class="experience" id="experience">
             <div class="container">
-                <header class="section-header" data-aos="fade-up">
+                <header class="section-header">
                     <h3>Job Experience</h3>
                     <p>
                        I am a fresher and as a fresher I might not have formal work experience. However, I can still showcase my skills and potential through relevant experiences in internships.
                     </p>
                 </header>
                 <div class="row">
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="0">
+                    <div class="col-md-6">
                         <div class="exp-column">
                             <p class="exp-date">Apr 2024 <span>to</span> May 2024</p>
                             <h4 class="exp-company">Coders Cave</h4>
@@ -849,7 +973,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-md-6">
                         <div class="exp-column">
                             <p class="exp-date">Sep 2023 <span>to</span> Oct 2023</p>
                             <h4 class="exp-company">Bharat Intern, Remote</h4>
@@ -860,7 +984,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-md-6">
                         <div class="exp-column">
                             <p class="exp-date">Aug 2023 <span>to</span> Sept 2023</p>
                             <h4 class="exp-company">Oasis Infobyte</h4>
@@ -872,7 +996,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="col-md-6">
                         <div class="exp-column">
                             <p class="exp-date">Aug 2023 <span>to</span> Nov 2023</p>
                             <h4 class="exp-company">Earth5, Remote</h4>
@@ -891,49 +1015,49 @@
         <!-- Services Start -->
         <div class="services" id="services">
             <div class="container">
-                <header class="section-header" data-aos="fade-up">
+                <header class="section-header">
                     <h3>My Services</h3>
                     <p>
                       Services that I can provide as per my skills and experience are:
                     </p>
                 </header>
                 <div class="row">
-                    <div class="col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="0">
+                    <div class="col-sm-6 col-md-4">
                         <div class="single-service">
                             <div class="service-icon"><i class="fa fa-desktop"></i></div>
                             <h4><a href="#">Web Design</a></h4>
                             <p>Creating visually appealing and user-friendly website designs that enhance user experience.</p>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-sm-6 col-md-4">
                         <div class="single-service">
                             <div class="service-icon"> <i class="fa fa-code"></i> </div>
                             <h4><a href="#">Web Development</a></h4>
                             <p>Building responsive and functional websites using modern technologies and best practices.</p>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-sm-6 col-md-4">
                         <div class="single-service">
                             <div class="service-icon"> <i class="fa fa-magic"></i> </div>
                             <h4><a href="#">UI/UX Design</a></h4>
                             <p>Designing intuitive user interfaces and experiences that meet user needs and business goals.</p>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="col-sm-6 col-md-4">
                         <div class="single-service">
                             <div class="service-icon"> <i class="fa fa-pencil-alt"></i> </div>
                             <h4><a href="#">Content Writing</a></h4>
                             <p>Creating engaging and informative content that communicates effectively with the target audience.</p>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="col-sm-6 col-md-4">
                         <div class="single-service">
                             <div class="service-icon"> <i class="fa fa-paint-brush"></i> </div>
                             <h4><a href="#">Graphic Design</a></h4>
                             <p>Designing visual content that communicates messages effectively and enhances brand identity.</p>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="col-sm-6 col-md-4">
                         <div class="single-service">
                             <div class="service-icon"> <i class="fa fa-mobile-alt"></i> </div>
                             <h4><a href="#">Responsive Design</a></h4>
@@ -949,28 +1073,28 @@
         <div class="counters">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="0">
+                    <div class="col-md-3 col-sm-6">
                         <div class="counter">
                             <div class="counter-icon-box"><i class="fa fa-calendar-alt"></i></div>
                             <div class="number" data-target="6">0</div>
                             <h4>MONTHS of Experience</h4>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-md-3 col-sm-6">
                         <div class="counter">
                             <div class="counter-icon-box"><i class="fa fa-check-circle"></i></div>
                             <div class="number" data-target="12">0</div>
                             <h4>Completed Projects</h4>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-md-3 col-sm-6">
                         <div class="counter">
                             <div class="counter-icon-box"><i class="fa fa-users"></i></div>
                             <div class="number" data-target="4">0</div>
                             <h4>Happy Clients</h4>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="col-md-3 col-sm-6">
                         <div class="counter">
                             <div class="counter-icon-box"><i class="fa fa-award"></i></div>
                             <div class="number" data-target="3">0</div>
@@ -985,7 +1109,7 @@
         <!-- Portfolio Start -->
         <div class="portfolio" id="portfolio">
             <div class="container">
-                <header class="section-header" data-aos="fade-up">
+                <header class="section-header">
                     <h3 class="section-title">My Portfolio</h3>
                     <p>
                         As a passionate web designer, I am dedicated to crafting user friendly websites. My portfolio showcases my ability to transform ideas into functional and engaging experiences. Through a combination of creativity, technical expertise and a focus on user needs.
@@ -995,64 +1119,64 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <ul id="portfolio-flters">
-                            <li data-filter="*" class="filter-active">All</li>
-                            <li data-filter=".web-des">Graphic Design</li>
-                            <li data-filter=".web-dev">Web Development</li>
-                            <li data-filter=".app-dev">UI/UX Design</li>
+                            <li data-filter="all" class="filter-active">All</li>
+                            <li data-filter="web-des">Graphic Design</li>
+                            <li data-filter="web-dev">Web Development</li>
+                            <li data-filter="app-dev">UI/UX Design</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="row portfolio-container">
-                    <div class="col-lg-4 col-md-6 portfolio-item web-des" data-aos="fade-up" data-aos-delay="0">
+                    <div class="col-lg-4 col-md-6 portfolio-item web-des">
                         <div class="portfolio-wrap">
                             <figure>
-                                <img src="img/portfolio-1.jpg" class="img-fluid" alt="Poster Design">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNqfa0riPy0TgAC5wrsmfInrdTEZSzb1SyN9wmJoyU83gXswdr9riKJWLmZKtongGSZnE&usqp=CAU" class="img-fluid" alt="Poster Design">
                                 <h4 class="portfolio-title">Poster<span>Graphic Design</span></h4>
                             </figure>
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 portfolio-item web-dev" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-lg-4 col-md-6 portfolio-item web-dev">
                         <div class="portfolio-wrap">
                             <figure>
-                                <img src="img/portfolio-3.jpg" class="img-fluid" alt="Estate Front-end">
+                                <img src="https://cdn.prod.website-files.com/6009ec8cda7f305645c9d91b/617fffcee442f6788553b1cd_mhO6VjTbLFL86ot4lz_OqK_0j1CknHwIboo2Oe75EXTjZhb3IXtzGKqyhvamtdZc4aAQXsSCPSdI9LIJbMm4xE_HhSqRBH6n9UtNCXEoHZddxN8F9wl57PCw4NO27_Y3i0MCSf5p.jpeg" class="img-fluid" alt="Estate Front-end">
                                 <h4 class="portfolio-title">Estate Front-end<span>Web Development</span></h4>
                             </figure>
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 portfolio-item app-dev" data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-lg-4 col-md-6 portfolio-item app-dev">
                         <div class="portfolio-wrap">
                             <figure>
-                                <img src="img/portfolio-5.jpg" class="img-fluid" alt="Scooty Renting App">
+                                <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="img-fluid" alt="Scooty Renting App">
                                 <h4 class="portfolio-title">Scooty renting app design <span>UI/UX Design</span></h4>
                             </figure>
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 portfolio-item web-des" data-aos="fade-up" data-aos-delay="300">
+                    <div class="col-lg-4 col-md-6 portfolio-item web-des">
                         <div class="portfolio-wrap">
                             <figure>
-                                <img src="img/portfolio-2.jpg" class="img-fluid" alt="Coffee Shop Logo">
+                                <img src="https://www.shutterstock.com/image-vector/coffee-line-style-logo-icon-600nw-2196209257.jpg&auto=format&fit=crop&w=1632&q=80" class="img-fluid" alt="Coffee Shop Logo">
                                 <h4 class="portfolio-title">Coffee Shop Logo<span>Graphic Design</span></h4>
                             </figure>
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 portfolio-item web-dev" data-aos="fade-up" data-aos-delay="400">
+                    <div class="col-lg-4 col-md-6 portfolio-item web-dev">
                         <div class="portfolio-wrap">
                             <figure>
-                                <img src="img/portfolio-4.jpg" class="img-fluid" alt="Netflix Homepage">
+                                <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" class="img-fluid" alt="Netflix Homepage">
                                 <h4 class="portfolio-title">Netflix Homepage<span>Web Development</span></h4>
                             </figure>
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 portfolio-item app-dev" data-aos="fade-up" data-aos-delay="500">
+                    <div class="col-lg-4 col-md-6 portfolio-item app-dev">
                         <div class="portfolio-wrap">
                             <figure>
-                                <img src="img/portfolio-6.jpg" class="img-fluid" alt="E-Learning Website">
+                                <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="img-fluid" alt="E-Learning Website">
                                 <h4 class="portfolio-title">E-Learning Website<span>UI/UX Design</span></h4>
                             </figure>
                         </div>
@@ -1065,12 +1189,12 @@
         <!-- Testimonials Start -->
         <div class="testimonials" id="testimonials">
             <div class="container">
-                <header class="section-header" data-aos="fade-up">
+                <header class="section-header">
                     <h3>Achievements & Activities</h3>
                 </header>
-                <div class="owl-carousel testimonials-carousel">
-                    <div class="testimonial-item" data-aos="fade-up" data-aos-delay="0">
-                        <img src="img/testimonial-1.jpg" class="testimonial-img" alt="Hackathons">
+                <div class="testimonials-carousel">
+                    <div class="testimonial-item">
+                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="testimonial-img" alt="Hackathons">
                         <h3>HACKATHONS</h3>
                         <p>
                           1. Participated in Hacktivate-2023<br>
@@ -1078,16 +1202,16 @@
                         </p>
                     </div>
 
-                    <div class="testimonial-item" data-aos="fade-up" data-aos-delay="100">
-                        <img src="img/testimonial-2.jpg" class="testimonial-img" alt="Competitions">
+                    <div class="testimonial-item">
+                        <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" class="testimonial-img" alt="Competitions">
                         <h3>COMPETITIONS</h3>
                         <p>
                             Participated in Maruti Suzuki XCELerate Quiz, Xiaomi ode2code 3.0 quiz, Coca-Cola Disrupt Season 3, Flipkart GRID 5.0, Asian Paints The Mosaic-2023, Tata Imagination Challenge 2023, TVS Credit E.P.I.C 6.0
                         </p>
                     </div>
 
-                    <div class="testimonial-item" data-aos="fade-up" data-aos-delay="200">
-                        <img src="img/testimonial-3.jpg" class="testimonial-img" alt="Research Paper">
+                    <div class="testimonial-item">
+                        <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="testimonial-img" alt="Research Paper">
                         <h3>RESEARCH PAPER</h3>
                         <p>
                             A research paper on blockchain, Title: "A Review on the New Age Technology Web 3.0 : Blockchain"
@@ -1101,7 +1225,7 @@
         <!-- Contact Start -->
         <div class="contact" id="contact">
             <div class="container">
-                <div class="section-header" data-aos="fade-up">
+                <div class="section-header">
                     <h3>Contact Me</h3>
                     <p>
                         Feel free to reach out to me for any questions or opportunities. I'm always open to discussing new projects and ideas.
@@ -1109,7 +1233,7 @@
                 </div>
 
                 <div class="row align-items-center">
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="0">
+                    <div class="col-md-6">
                         <div class="contact-info">
                             <p><i class="fa fa-user"></i>Jiya Shah</p>
                             <p><i class="fa fa-tag"></i>Web Designer & Developer</p>
@@ -1124,7 +1248,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-md-6">
                         <form class="contact-form">
                             <input type="text" placeholder="Your Name" required>
                             <input type="email" placeholder="Your Email" required>
@@ -1152,24 +1276,9 @@
         <!-- Back to Top -->
         <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
-        <!-- JavaScript Libraries -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/isotope/isotope.pkgd.min.js"></script>
-
         <script>
-            // Initialize AOS (Animate On Scroll)
-            AOS.init({
-                duration: 1000,
-                easing: 'ease-in-out',
-                once: true,
-                mirror: false
-            });
-
-            // Typing Effect
             document.addEventListener('DOMContentLoaded', function() {
+                // Typing Effect
                 const texts = [
                     "Web Designer",
                     "Web Developer", 
@@ -1233,6 +1342,10 @@
                     link.addEventListener('click', function() {
                         navMenu.classList.remove('active');
                         menuToggle.classList.remove('active');
+                        
+                        // Set active class
+                        navLinks.forEach(item => item.classList.remove('active'));
+                        this.classList.add('active');
                     });
                 });
                 
@@ -1247,7 +1360,7 @@
                         const targetElement = document.querySelector(targetId);
                         if (targetElement) {
                             window.scrollTo({
-                                top: targetElement.offsetTop - 80,
+                                top: targetElement.offsetTop - 70,
                                 behavior: 'smooth'
                             });
                         }
@@ -1271,7 +1384,7 @@
                         
                         // Show/hide portfolio items
                         portfolioItems.forEach(item => {
-                            if (filterValue === '*' || item.classList.contains(filterValue.replace('.', ''))) {
+                            if (filterValue === 'all' || item.classList.contains(filterValue)) {
                                 item.style.display = 'block';
                             } else {
                                 item.style.display = 'none';
@@ -1313,26 +1426,25 @@
                 // Initialize progress bars
                 const progressBars = document.querySelectorAll('.progress-bar');
                 progressBars.forEach(bar => {
-                    const width = bar.getAttribute('aria-valuenow') + '%';
-                    bar.style.width = width;
+                    const width = bar.getAttribute('data-width') + '%';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 500);
                 });
                 
-                // Testimonials carousel
-                $('.testimonials-carousel').owlCarousel({
-                    autoplay: true,
-                    dots: true,
-                    loop: true,
-                    responsive: {
-                        0: {
-                            items: 1
-                        },
-                        768: {
-                            items: 2
-                        },
-                        992: {
-                            items: 3
-                        }
-                    }
+                // Form submission
+                const contactForm = document.querySelector('.contact-form');
+                if (contactForm) {
+                    contactForm.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        alert('Thank you for your message! I will get back to you soon.');
+                        this.reset();
+                    });
+                }
+                
+                // Initialize all portfolio items to show initially
+                portfolioItems.forEach(item => {
+                    item.style.display = 'block';
                 });
             });
         </script>
